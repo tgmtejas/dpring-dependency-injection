@@ -29,8 +29,9 @@ public class SfgDiApplication {
 		1. Add @Controller on Controller class otherwise you will get 'No bean named @classname available'
 		2. Add @Autowired on object definition which is being injected otherwise you will get 'null pointer' as
 		   spring has no idea you suppose to inject in particular object. It is optional in ConstructorInjectedController
-		3. Ass @Service on business service class to inform spring to autowire @service object
-		 */
+		3. Add @Service on business service class to inform spring to autowire @service object
+		4.Add @Qualifier above method to provide which service object to be injected in case of multiple services
+		*/
 
 		// PropertyInjector
 		System.out.println("This is PropertyInjector");
