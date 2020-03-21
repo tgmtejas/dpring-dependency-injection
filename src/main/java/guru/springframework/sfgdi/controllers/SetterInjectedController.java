@@ -27,3 +27,4 @@ public class SetterInjectedController {
         return greetingService.sayGreeting();
     }
 }
+

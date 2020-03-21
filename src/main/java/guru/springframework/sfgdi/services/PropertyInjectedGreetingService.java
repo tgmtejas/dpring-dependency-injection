@@ -10,3 +10,4 @@ public class PropertyInjectedGreetingService implements GreetingService {
         return "Hello World - Property";
     }
 }
+

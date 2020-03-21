@@ -12,26 +12,27 @@ import org.springframework.context.ApplicationContext;
 public class SfgDiApplication {
 
 	public static void main(String[] args) {
-		/**
-		 * @link https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/ApplicationContext.html
-		 */
+
 		ApplicationContext ctx = SpringApplication.run(SfgDiApplication.class, args);
-
-		// String name of bean is classname with lowercase first letter
-		MyController myController = (MyController) ctx.getBean("myController");
-
-		// call function within MyController class
-		String greeting = myController.sayHello();
-
-		System.out.println(greeting);
 
 		/*
 		1. Add @Controller on Controller class otherwise you will get 'No bean named @classname available'
 		2. Add @Autowired on object definition which is being injected otherwise you will get 'null pointer' as
 		   spring has no idea you suppose to inject in particular object. It is optional in ConstructorInjectedController
 		3. Add @Service on business service class to inform spring to autowire @service object
-		4.Add @Qualifier above method to provide which service object to be injected in case of multiple services
+		4. Add @Qualifier above method to provide which service object to be injected in case of multiple services
+		5. Add @Primary on default service class for primary bean selection. If you don't provide autowired and qualifier on on any
+		   controller method, then by default it selects primary service
+		6. Add @Profile on top of Service class if you plan to use multiple services with same qualifier name.
+		   Controller has to choose between two services if both has same qualifier name, it will select on basis of profile
+		   You need to add active profile in resources application properties or provide "default" in profile option to
+		   make it default
 		*/
+
+		// Primary service
+		System.out.println("This is Primary bean");
+		MyController myController = (MyController) ctx.getBean("myController");
+		System.out.println(myController.sayHello());
 
 		// PropertyInjector
 		System.out.println("This is PropertyInjector");

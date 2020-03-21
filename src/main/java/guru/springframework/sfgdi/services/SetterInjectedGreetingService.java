@@ -10,3 +10,4 @@ public class SetterInjectedGreetingService implements GreetingService {
         return "Hello World - Setter";
     }
 }
+
